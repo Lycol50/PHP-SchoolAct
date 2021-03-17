@@ -13,15 +13,17 @@
     <?php
     if (isset($_POST['submit'])) {
         $age = $_POST['age'];
-        if ($age <= 17) {
+            if ($age <= 17) {
             echo "Your age is: " . $age;
-            echo "<br> You are not eligible for voting.";
-        } elseif ($age >= 60) {
+            echo "Sorry you are too young to vote.";
+        }
+        elseif ($age >= 60) {
             echo "Your age is: " . $age;
-            echo "<br>You are not eligible for voting.";
-        } else {
+            echo "You are qualified to vote.";
+        }
+        else {
             echo "Your age is: " . $age;
-            echo "<br> You are eligible for voting.";
+            echo "You are too old to vote.";
         }
     }
     ?>
