@@ -6,9 +6,10 @@
     }
     elseif ($age >= 60) {
         echo "Your age is: " . $age;
-        echo "You are qualified to vote.";
+        echo "Sorry you are too old to vote.";
     }
     else {
         echo "Your age is: " . $age;
-        echo "You are too old to vote.";
+        echo "You are qualified to vote.";
     }
+?>
