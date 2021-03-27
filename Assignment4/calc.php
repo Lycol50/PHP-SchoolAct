@@ -1,10 +1,12 @@
 <?php
 // inputs and outputs
-$firstnum = $_POST['firstnum'];
-$secnum = $_POST['secnum'];
-$array = array($firstnum, $secnum);
-$res = "";
-$op = "";
+
+if(!is_int($_POST['firstnum']) || !is_int($_POST['firstnum'])) return echo 'Invalid input';
+
+$array = array(
+    'first' => $_POST['firstnum'],
+    'second' => $_POST['secnum']
+);
 
 // buttons
 $ADD = $_POST['ADD'];
@@ -12,24 +14,44 @@ $DIFF = $_POST['DIFF'];
 $DIV = $_POST['DIV'];
 $MULT = $_POST['MULT'];
 
+$result = "The {operation} of {first} and {second} is {result}";
+
 // operations
 switch (true) {
     case $ADD:
-        $res = array_sum($array);
-        $op = "sum";
+        echo strtr($result, [
+            '{operation}' => "Sum",
+            '{first}' => $array['first'],
+            '{second}' => $array['second'],
+            '{result}' => (int) $array['first'] + $array['second']
+        );
         break;
     case $DIFF:
-        $op = "difference";
-        $res = $firstnum - $secnum;
+        echo strtr($result, [
+            '{operation}' => "Difference",
+            '{first}' => $array['first'],
+            '{second}' => $array['second'],
+            '{result}' => (int) $array['first'] - $array['second']
+        );
         break;
     case $DIV:
-        $op = "dividend";
-        $res = $firstnum / $secnum;
+        echo strtr($result, [
+            '{operation}' => "Dividend",
+            '{first}' => $array['first'],
+            '{second}' => $array['second'],
+            '{result}' => (int) $array['first'] / $array['second']
+        );
         break;
     case $MULT:
-        $op = "product";
-        $res = array_product($array);
+        echo strtr($result, [
+            '{operation}' => "Product",
+            '{first}' => $array['first'],
+            '{second}' => $array['second'],
+            '{result}' => (int) $array['first'] * $array['second']
+        );
+   break;
 }
+
 ?>
 <html lang="en">
 <head>
@@ -44,10 +66,6 @@ switch (true) {
     <input type="submit" name="ADD" value="ADD"> <input type="submit" name="DIFF" value="DIFF"> <input type="submit" name="DIV" value="DIV">
     <input type="submit" name="MULT" value="MUL">
 </form>
-<?php
-// intial output
-echo "The " . $op . " of " . $firstnum . " and " . $secnum . " is " . $res;
-?>
 <footer><h6>Code by princepines<br>Available on <a
                 href="https://github.com/Lycol50/PHP-SchoolAct/blob/main/Assignment4/calc.php">Github</a></h6></footer>
 </body>
